@@ -6,7 +6,7 @@ module.exports = {
         var temp = 0;
         message.react('👍').then(() => message.react('👎'));
         
-        const collector = message.createReactionCollector({time: 5000}) ;
+        const collector = message.createReactionCollector({time: 20000}) ;
         
         collector.on('collect', (reaction, user) => {
             if(reaction.emoji.name === '👍'){
@@ -18,7 +18,7 @@ module.exports = {
         });
         
         collector.on('end', collected => {
-            if(temp > 1){
+            if(temp > 5){
                 const member = message.mentions.members.first();
                     member.roles.add("913855955786149908");
                     var ime = member.nickname;

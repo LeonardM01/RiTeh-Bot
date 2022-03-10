@@ -1,0 +1,19 @@
+{
+  "name": "ritehbot",
+  "version": "1.0.0",
+  "description": "A discord bot with usefull commands for students of RiTeh",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "discord",
+    "riteh"
+  ],
+  "author": "Leonard Martinis",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  }
+}

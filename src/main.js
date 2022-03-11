@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({intents: ["GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS_AND_STICKERS", "GUILDS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"]});
+require('dotenv').config();
 
 const fs = require('fs');
 const prefix = '!';
@@ -30,4 +31,6 @@ client.on('message', message => {
 client.once('ready', () => {
     console.log('RiTeh BOT is online!');
 })
-client.login('OTQ5OTgyNDI3OTAyNzk1Nzg2.YiSSFA.VT9RscCjAdak0aQTiaPTX0rLW3Q');
+
+
+client.login(process.env.KEY);

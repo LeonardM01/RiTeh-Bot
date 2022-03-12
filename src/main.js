@@ -3,24 +3,26 @@ const client = new Discord.Client({intents: ["GUILD_MEMBERS", "GUILD_BANS", "GUI
 require('dotenv').config();
 
 const fs = require('fs');
-const prefix = '!';
+const prefix = '?';
 client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+module.exports.clientComands = client.commands;
 
+const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
     const command = require(`../commands/${file}`);
     client.commands.set(command.name, command);
 }
-    
-client.on('message', message => {
-    if (!message.content.startsWith('!') || message.author.bot) return;
+
+client.on('messageCreate', message => {
+    if (!message.content.startsWith('?') || message.author.bot) return;
     var args = message.content.substring(1).split(/ +/);
+    //console.log(args);
     var command = args.shift().toLowerCase()
 
     if (!client.commands.has(command)) return;
     try {
-        client.commands.get(command).execute(message,args);
+        client.commands.get(command).execute(message, args);
     } catch (error) {
         message.reply('there was an error trying to execute that command!' + "\n" + client.commands.get(command).usage);
     }

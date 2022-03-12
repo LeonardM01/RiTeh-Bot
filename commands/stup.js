@@ -7,19 +7,10 @@ module.exports = {
         message.react('👍').then(() => message.react('👎'));
         const member = message.mentions.members.first();
         
-        const collector = message.createReactionCollector({time: 20000}) ;
-        
-        collector.on('collect', (reaction, user) => {
-            if(reaction.emoji.name === '👍'){
-                temp++;
-            }
-            if(reaction.emoji.name === '👎' && user.id!=member){
-                temp--;
-            }
-        });
+        const collector = message.createReactionCollector({time: 5000}) ;
         
         collector.on('end', collected => {
-            if(temp > 5){
+            if(collected.get('👍').count-collected.get('👎').count > 5){
                     member.roles.add("913855955786149908");
                     var ime = member.nickname;
                     if(ime == null){

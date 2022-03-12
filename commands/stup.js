@@ -7,7 +7,7 @@ module.exports = {
         message.react('👍').then(() => message.react('👎'));
         const member = message.mentions.members.first();
         
-        const collector = message.createReactionCollector({time: 5000}) ;
+        const collector = message.createReactionCollector({time: 300000}) ;
         
         collector.on('end', collected => {
             if(collected.get('👍').count-collected.get('👎').count > 5){

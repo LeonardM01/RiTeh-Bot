@@ -16,7 +16,9 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/collection": "^0.5.0",
+    "axios": "^0.26.1",
     "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "jsdom": "^19.0.0"
   }
 }

@@ -1,6 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({intents: ["GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS_AND_STICKERS", "GUILDS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"]});
 require('dotenv').config();
+//config za databazu da se zna koja je bila zadnja vijest
+const config = require('../databases/db.json');
+module.exports.config = config;
 
 const fs = require('fs');
 const prefix = '?';

@@ -6,9 +6,11 @@ const clientComands = require('../src/main').clientComands;
 module.exports = {
     name: 'help',
     description: "Help komanda za ispisivanje svi mogućih komandi",
+    usage: "?help [null/ime komande]",
     execute(message, args){
-
+        //embeded poruka u kojoj se salju postojece funkcije
         if(!args.length){
+            //ako se nije upisala komanda tocna onda se ispisuju sve komande
             const embed = new MessageEmbed()
                 .setColor('BLUE')
                 .setTitle("Sve postojeće komande:")
@@ -33,6 +35,7 @@ module.exports = {
                 ])
                 message.channel.send({embeds : [embed]});
         }
+        //ako se upise help za tocnu komandu onda se posalje tocna trazena komanda
         else{
             let komanda = clientComands.get(args[0]);
             const embed = new MessageEmbed()

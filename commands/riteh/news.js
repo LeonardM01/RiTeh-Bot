@@ -1,7 +1,7 @@
 //konstante potrebne za dobavljanje vijesti
-const config = require('../src/main').config; //databaza
-const configManager = require('../src/configManager'); //config menager za mijenjat databazu
-const fetchNews = require('../src/fetchNews'); //metoda za bacanje vijesti
+const config = require('../../src/main').config; //databaza
+const configManager = require('../../src/configManager'); //config menager za mijenjat databazu
+const fetchNews = require('../../src/fetchNews'); //metoda za bacanje vijesti
 
 module.exports = {
     name: 'news',

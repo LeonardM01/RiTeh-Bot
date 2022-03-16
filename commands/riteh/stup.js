@@ -4,7 +4,6 @@ module.exports = {
     usage: "!stup [mention osobe]",
     //metoda za stavljanje ljudi na stup srama
     execute: async (message, args) => {
-        var temp = 0;
         //bot reagira na poruku da se reakcija ne mora traziti
         message.react('👍').then(() => message.react('👎'));
         //uzima se prva osoba koja je mentionana za stavit na role

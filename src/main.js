@@ -10,19 +10,22 @@ const prefix = '?';
 client.commands = new Discord.Collection();
 module.exports.clientComands = client.commands;
 
-const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-    const command = require(`../commands/${file}`);
-    client.commands.set(command.name, command);
-}
+fs.readdirSync('./commands').forEach(dir =>{
+    fs.readdir(`./commands/${dir}`,(err,files)=>{
+        if(err) throw err;
+        files.forEach(file =>{
+            console.log('[command]'+file);
+            var command = require(`../commands/${dir}/${file}`);
+            client.commands.set(command.name, command);
+        });
+    });
+});
 
 client.on('messageCreate', message => {
     if (!message.content.startsWith('?') || message.author.bot) return;
     var args = message.content.substring(1).split(/ +/);
     //console.log(args);
     var command = args.shift().toLowerCase()
-
     if (!client.commands.has(command)) return;
     try {
         client.commands.get(command).execute(message, args);
@@ -31,9 +34,9 @@ client.on('messageCreate', message => {
     }
 });
 
-
-
+// when the bot is online
 client.once('ready', () => {
+    client.user.setActivity('www.riteh.uniri.hr', {type : "WATCHING"});
     console.log('RiTeh BOT is online!');
 })
 

@@ -3,14 +3,14 @@ const axios = require('axios');
 const { Message, MessageEmbed } = require('discord.js');
 const embed = new MessageEmbed();
 
-module.exports = (config,link,configManager, message) =>{
+module.exports = (config,link,configManager, message) => {
     axios.get(link)
         .then(function (response) {
             const dom = new jsdom.JSDOM(response.data);
             let lista = [];
             //funckija se runna ako nema definirane "zadnje obavijesti" u databazi
             if(config.zadnjaObavjest.length == 0){
-                let a = dom.window.document.querySelectorAll(`#content > div > div:nth-child(3) > div.grid-5.alpha > ul > li:nth-child(3)`);
+                let a = dom.window.document.querySelectorAll(`#content > div > div:nth-child(3) > div.grid-5.alpha > ul > li:nth-child(6)`);
                 let naslov = a[0].querySelectorAll('h3 > a')[0].textContent;
                 configManager(config,'zadnjaObavjest',naslov);
             }
@@ -30,7 +30,7 @@ module.exports = (config,link,configManager, message) =>{
                         .setColor('BLUE')
                         .setTitle(naslov)
                         .setDescription(sazetak)
-                        .setFooter(datum)
+                        .setFooter({text: datum})
                         .setURL("http://www.riteh.uniri.hr"+naslovLink)
                     message.reply({embeds : [embed]});
                 }else{

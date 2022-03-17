@@ -8,14 +8,9 @@ module.exports = {
         message.react('👍').then(() => message.react('👎'));
         //uzima se prva osoba koja je mentionana za stavit na role
         const member = message.mentions.members.first();
-<<<<<<< HEAD:commands/stup.js
         
         const collector = message.createReactionCollector({time: 300000}) ;
-=======
-        //varijabla koja ceka reagiranje
-        const collector = message.createReactionCollector({time: 5000}) ;
->>>>>>> testing:commands/riteh/stup.js
-        
+
         collector.on('end', collected => {
             if(collected.get('👍').count-collected.get('👎').count > 5){
                     member.roles.add("913855955786149908");

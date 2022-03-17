@@ -50,7 +50,6 @@ module.exports = {
         }
         //ako se upise help za tocnu komandu onda se posalje tocna trazena komanda
         else{
-            console.log(clientComands);
             let komanda = clientComands.get(args[0]);
             const embed = new MessageEmbed()
                 .setColor('BLUE')

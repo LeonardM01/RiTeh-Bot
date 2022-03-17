@@ -1,14 +1,16 @@
 const { DiscordAPIError, MessageEmbed } = require("discord.js")
 const fs = require("fs");
 
-const clientComands = require('../src/main').clientComands;
+const clientComands = require('../../src/main').clientComands;
 
 module.exports = {
     name: 'help',
     description: "Help komanda za ispisivanje svi mogućih komandi",
+    usage: "?help [null/ime komande]",
     execute(message, args){
-
+        //embeded poruka u kojoj se salju postojece funkcije
         if(!args.length){
+            //ako se nije upisala komanda tocna onda se ispisuju sve komande
             const embed = new MessageEmbed()
                 .setColor('BLUE')
                 .setTitle("Sve postojeće komande:")
@@ -29,16 +31,31 @@ module.exports = {
                 }, {
                     name: "?stup",
                     value: "Jurica based komanda za stavljanje ljudi na STUP SRAMA"
+                },{
+                    name: "?ban",
+                    value: "Komanda za bannanje željenog usera"
+                },{
+                    name: "?timeout",
+                    value: "Komanda za timeout-anje željenog usera"
+                },
+                {
+                    name: "?setadminrole",
+                    value: "Komanda za postavljanje admin role u botovu databazu"
+                },{
+                    name: "?setprefix",
+                    value: "Komanda za postavljanje admin role u botovu databazu"
                 }
                 ])
                 message.channel.send({embeds : [embed]});
         }
+        //ako se upise help za tocnu komandu onda se posalje tocna trazena komanda
         else{
+            console.log(clientComands);
             let komanda = clientComands.get(args[0]);
             const embed = new MessageEmbed()
                 .setThumbnail("http://www.riteh.uniri.hr/media/filer_public_thumbnails/filer_public/23/b8/23b8da35-e7b4-40fe-abb1-013c9df5c64c/ivo_ipsic.jpg__300x0_q92_crop_subsampling-2_upscale.jpg")
-                .setTitle("Koristenje komande:")
-                .setDescription("?" + komanda.name +" : " + komanda.description + "\t"+ komanda.usage)
+                .setTitle("\nKoristenje komande:")
+                .setDescription(komanda.name +" : " + komanda.description + "\n"+ komanda.usage)
                 message.channel.send({embeds : [embed]});
         }
 

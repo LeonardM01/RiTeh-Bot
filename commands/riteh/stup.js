@@ -2,12 +2,19 @@ module.exports = {
     name: 'stup',
     description: "Glasanje za stavljanje usera na stup srama",
     usage: "!stup [mention osobe]",
+    //metoda za stavljanje ljudi na stup srama
     execute: async (message, args) => {
-        var temp = 0;
+        //bot reagira na poruku da se reakcija ne mora traziti
         message.react('👍').then(() => message.react('👎'));
+        //uzima se prva osoba koja je mentionana za stavit na role
         const member = message.mentions.members.first();
+<<<<<<< HEAD:commands/stup.js
         
         const collector = message.createReactionCollector({time: 300000}) ;
+=======
+        //varijabla koja ceka reagiranje
+        const collector = message.createReactionCollector({time: 5000}) ;
+>>>>>>> testing:commands/riteh/stup.js
         
         collector.on('end', collected => {
             if(collected.get('👍').count-collected.get('👎').count > 5){

@@ -53,6 +53,7 @@ module.exports = {
             console.log(clientComands);
             let komanda = clientComands.get(args[0]);
             const embed = new MessageEmbed()
+                .setColor('BLUE')
                 .setThumbnail("http://www.riteh.uniri.hr/media/filer_public_thumbnails/filer_public/23/b8/23b8da35-e7b4-40fe-abb1-013c9df5c64c/ivo_ipsic.jpg__300x0_q92_crop_subsampling-2_upscale.jpg")
                 .setTitle("\nKoristenje komande:")
                 .setDescription(komanda.name +" : " + komanda.description + "\n"+ komanda.usage)

@@ -7,8 +7,8 @@ module.exports = {
     description: "Komanda za postavljanje admin role u botovu databazu",
     usage: "?setprefix [znak]",
     execute(message, args){
-        if(message.member._roles.find(role => role === config['admin-role'])){
-            configManager(config, "prefix", args[0]);
+        if(message.member._roles.find(role => role === config['admin-role']) || message.member.id == config.owner){
+            configManager(config, 'prefix', args[0]);
         }
     }
 }

@@ -7,4 +7,4 @@ module.exports = (config,name,value) => {
         if (err) return console.log(err);
       });
     config = tempConfig
-} 
+}

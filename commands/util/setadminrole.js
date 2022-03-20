@@ -34,7 +34,7 @@ module.exports = {
                     .setTitle("User: " + message.member.nickname + " je htio postaviti admin role!")
                     .setDescription(":exclamation: Pojeo je govno :exclamation")
                     .setTimestamp()
-                channel.send({embeds : [embed]});
+                message.reply({embeds : [embed]});
         }
         
     }

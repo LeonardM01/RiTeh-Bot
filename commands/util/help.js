@@ -44,6 +44,12 @@ module.exports = {
                 },{
                     name: "?setprefix",
                     value: "Komanda za postavljanje admin role u botovu databazu"
+                },{
+                    name: "?setrole",
+                    value: "Komanda za davanje nekog rola osobi"
+                },{
+                    name: "?removerole",
+                    value: "Komanda za micanje rola osobe"
                 }
                 ])
                 message.channel.send({embeds : [embed]});

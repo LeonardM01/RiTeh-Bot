@@ -32,7 +32,7 @@ module.exports = {
                     .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
                     .setColor('BLUE')
                     .setTitle("User: " + message.member.nickname + " je htio postaviti admin role!")
-                    .setDescription(":exclamation: Pojeo je govno :exclamation")
+                    .setDescription(":exclamation: Pojeo je govno :exclamation:middle_finger:")
                     .setTimestamp()
                 message.reply({embeds : [embed]});
         }

@@ -13,7 +13,7 @@ module.exports = {
         if(args[2]==undefined){
             imeRola = args[1];
         }else {
-            imeRola = args[1] + " " + args[2];
+            imeRola = args.slice(1).join(' ');
         }
         // role koji se dodjeljuje
         const role = message.guild.roles.cache.find(role => role.name === imeRola.toUpperCase());

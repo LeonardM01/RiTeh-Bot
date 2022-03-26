@@ -50,6 +50,9 @@ module.exports = {
                 },{
                     name: "?removerole",
                     value: "Komanda za micanje rola osobe"
+                },{
+                    name: "?poll",
+                    value: "Komanda za stvaranje poll-a"
                 }
                 ])
                 message.channel.send({embeds : [embed]});

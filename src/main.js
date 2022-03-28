@@ -13,35 +13,23 @@ const configManager = require('./configManager');
 client.commands = new Discord.Collection();
 module.exports.clientComands = client.commands;
 
-fs.readdirSync('./commands').forEach(dir =>{
+fs.readdirSync('./commands/').forEach(dir =>{
     fs.readdir(`./commands/${dir}`,(err,files)=>{
         if(err) throw err;
         files.forEach(file =>{
+            console.log('[command]'+file);
             var command = require(`../commands/${dir}/${file}`);
             client.commands.set(command.name, command);
         });
     });
 });
 
-client.on('messageCreate', message => {
-    if (!message.content.startsWith(config.prefix) || message.author.bot) return;
-    var args = message.content.substring(1).split(/ +/);
-    //console.log(args);
-    var command = args.shift().toLowerCase()
-    if (!client.commands.has(command)) return;
-    try {
-        client.commands.get(command).execute(message, args);
-    } catch (error) {
-        message.reply('there was an error trying to execute that command!' + "\n" + client.commands.get(command).usage);
-    }
+fs.readdir('./events',(err,files)=>{
+    if(err) throw err;
+    files.forEach(file =>{
+        console.log('[event]'+file);
+        var events = require(`../events/${file}`);
+    })
 });
-
-// when the bot is online
-client.once('ready', () => {
-    //configManager(config, 'owner', Discord.CommandInteraction.guild);
-    client.user.setActivity('www.riteh.uniri.hr', {type : "WATCHING"});
-    console.log('RiTeh BOT is online!');
-})
-
 
 client.login(process.env.KEY);

@@ -21,6 +21,7 @@
     "discord.js-poll": "^1.0.4",
     "dotenv": "^16.0.0",
     "jsdom": "^19.0.0",
+    "mongoose": "^6.2.9",
     "nodemon": "^2.0.15"
   }
 }

@@ -1,28 +1,16 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({intents: ["GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS_AND_STICKERS", "GUILDS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"]});
-module.exports.client = client;
 
 require('dotenv').config();
-//config za databazu da se zna koja je bila zadnja vijest
-const config = require('../databases/db.json');
-module.exports.config = config;
-
-//databaza u mongoDB
-const mongoose = require('mongoose');
-module.exports.mongoose = mongoose;
-//database connection
-mongoose.connect(process.env.CONNECTION_URL, () => {console.log('Connected to database!')}, e => console.error(e));
-const guildmodel = require('../databases/schemas/guildschema');
-async function create(){
-    const guild = await guildmodel.create({ owner: 1, admin: 2, log: 3, prefix: "?", guildID: 69});
-    console.log(guild);
-}
-create();
 
 const fs = require('fs');
-const configManager = require('./configManager');
 client.commands = new Discord.Collection();
-module.exports.clientComands = client.commands;
+
+//cache & database creation
+const mongoose = require('mongoose');
+const NodeCache = require( "node-cache" );
+const myCache = new NodeCache();
+
 
 fs.readdirSync('./commands/').forEach(dir =>{
     fs.readdir(`./commands/${dir}`,(err,files)=>{
@@ -44,3 +32,16 @@ fs.readdir('./events',(err,files)=>{
 });
 
 client.login(process.env.KEY);
+
+mongoose.connect(process.env.CONNECTION_URL ,(err) => {
+    if (err) return console.log("Error: ", err);
+    console.log(
+      "MongoDB Connection -- Ready state is:",
+      mongoose.connection.readyState
+    );
+  });
+
+module.exports.client = client;
+module.exports.mongoose = mongoose;
+module.exports.myCache = myCache;
+module.exports.clientComands = client.commands;

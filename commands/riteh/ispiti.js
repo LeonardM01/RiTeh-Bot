@@ -4,7 +4,7 @@ module.exports = {
     name: 'ispiti',
     description: "Raspored ispita u semestru",
     usage: "?ispiti",
-    execute(message, args) {
+    execute(message, args, cache) {
             const embed = new MessageEmbed()
                 .setColor('BLUE')
                 .setTitle("Raspored ispita")

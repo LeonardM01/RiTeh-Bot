@@ -4,7 +4,7 @@ module.exports = {
     name: 'kolokviji',
     description:"Raspored kolokvija u semestru",
     usage: "?kolokviji",
-    execute(message, args){
+    execute(message, args, cache){
         const embed = new MessageEmbed()
                 .setColor('BLUE')
                 .setTitle("Raspored kolokvija")

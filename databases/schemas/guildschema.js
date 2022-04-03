@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
 const guildSchema = new mongoose.Schema({
-    owner : Number,
-    admin : Number,
-    log : Number,
-    prefix : String,
-    guildID : Number,
-  });
+  owner : String,
+  serverName : String,
+  moderator : String,
+  log : String,
+  prefix : String,
+  guildId : String,
+});
 
   module.exports = mongoose.model('guilds',guildSchema);

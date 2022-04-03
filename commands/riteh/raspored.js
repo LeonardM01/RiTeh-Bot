@@ -4,7 +4,7 @@ module.exports = {
     name: 'raspored',
     description: "Raspored za semestar",
     usage: "?raspored",
-    execute(message, args) {
+    execute(message, args, cache) {
         const embed = new MessageEmbed()
             .setColor('BLUE')
             .setImage('https://i.imgur.com/ibDBYdP.png')

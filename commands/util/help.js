@@ -7,7 +7,7 @@ module.exports = {
     name: 'help',
     description: "Help komanda za ispisivanje svi mogućih komandi",
     usage: "?help [null/ime komande]",
-    execute(message, args){
+    execute(message, args, cache){
         //embeded poruka u kojoj se salju postojece funkcije
         if(!args.length){
             //ako se nije upisala komanda tocna onda se ispisuju sve komande

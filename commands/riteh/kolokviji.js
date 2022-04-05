@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js"); // import embeded messagea
+const { MessageEmbed } = require("discord.js"); // import embeded messages
 
 module.exports = {
     name: 'kolokviji',

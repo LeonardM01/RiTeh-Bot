@@ -1,18 +1,11 @@
-const {mongoose,client,myCache} = require('../src/main');
-const guildModel = require('../databases/schemas/guildschema');
+const { client } = require('../src/main');
+const {fetchCache} = require('../src/cache');
+
 
 client.on('messageCreate',async (message)=>{
-    let cache = myCache.get(message.guildId);
-    //console.log(cache);
-    if(cache == undefined){
-        var tGuild = await guildModel.findOne({guildId : message.guildId});
-        if(tGuild == null){
-            return;
-        }else{
-            myCache.set(tGuild.guildId,tGuild);
-            cache = tGuild;
-        }
-    }
+    
+    var cache = await fetchCache(message.guildId);
+    
     if(!message.content.startsWith(cache.prefix) || message.author.bot) return;
     const args = message.content.slice(cache.prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();

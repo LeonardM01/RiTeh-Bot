@@ -9,7 +9,7 @@ module.exports = {
         //uzima se prva osoba koja je mentionana za stavit na role
         const member = message.mentions.members.first();
         
-        const collector = message.createReactionCollector({time: 300000}) ;
+        const collector = message.createReactionCollector({time: 60000*30}) ;
 
         collector.on('end', collected => {
             if(collected.get('👍').count-collected.get('👎').count > 5){

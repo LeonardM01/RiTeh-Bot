@@ -4,7 +4,7 @@
   "description": "A discord bot with usefull commands for students of RiTeh",
   "main": "src/main.js",
   "scripts": {
-    "start": "node .",
+    "start": "nodemon ./src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

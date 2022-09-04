@@ -1,4 +1,4 @@
-const {myCache,client} = require('./main');
+const {myCache, client} = require('./main');
 const guildModel = require('../databases/schemas/guildschema');
  
 async function isCacheAvailable(id){
@@ -13,7 +13,7 @@ async function fetchCache(id){
     if(await isCacheAvailable(id)){
         return myCache.get(id);
     }else{
-        var tGuild = await guildModel.findOne({guildId : id});
+        let tGuild = await guildModel.findOne({guildId : id});
         if(tGuild == null){
             let guild = client.guilds.cache.get(id);
             tGuild = new guildModel({

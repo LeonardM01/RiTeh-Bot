@@ -4,7 +4,7 @@ const {fetchCache} = require('../src/cache');
 
 client.on('messageCreate',async (message)=>{
     
-    var cache = await fetchCache(message.guildId);
+    let cache = await fetchCache(message.guildId);
     
     if(!message.content.startsWith(cache.prefix) || message.author.bot) return;
     const args = message.content.slice(cache.prefix.length).trim().split(/ +/);
@@ -14,6 +14,6 @@ client.on('messageCreate',async (message)=>{
         client.commands.get(command).execute(message,args, cache);
     } catch (error) {
         console.error(error);
-        message.reply('there was an error trying to execute that command!');
+        await message.reply('there was an error trying to execute that command!');
     }
 });

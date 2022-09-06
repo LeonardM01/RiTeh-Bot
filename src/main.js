@@ -1,63 +1,50 @@
-// made by L.Martinis & D.Kovačević
-const { REST } = require('@discordjs/rest');
-const NodeCache = require( "node-cache" );
-const Discord = require('discord.js');
-const fs = require('fs');
-const mongoose = require('mongoose');
-require('dotenv').config();
+// Require the necessary discord.js classes
+const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const dotenv = require('dotenv');
+const fs = require('node:fs');
+const path = require('node:path');
 
-const client = new Discord.Client({intents: ["GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS_AND_STICKERS", "GUILDS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"]});
-client.commands = new Discord.Collection();
+// .env config
+dotenv.config();
 
-//cache & database creation
-const myCache = new NodeCache();
-const rest = new REST({ version: '10' }).setToken(process.env.KEY);
+// Create a new client instance
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
+// commands
+client.commands = new Collection();
+const commandsPath = path.join(__dirname, '../commands/');
+const commandFiles = fs.readdirSync(commandsPath);
 
-(async () => {
-    try {
-        console.log(`Started refreshing ${commands.length} application (/) commands.`);
+for (const dir of commandFiles) {
+  for (const file of fs.readdirSync(commandsPath + dir)) {
+    const filePath = path.join(commandsPath + dir, file);
+    const command = require(filePath);
+    client.commands.set(command.data.name, command);
+  }
+}
 
-        const data = await rest.put(
-          Routes.applicationGuildCommands(clientId, guildId),
-          { body: commands },
-        );
-
-        console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-    } catch (error) {
-        console.error(error);
-    }
-})();
-// fs.readdirSync('./commands/').forEach(dir =>{
-//     fs.readdir(`./commands/${dir}`,(err,files)=>{
-//         if(err) throw err;
-//         files.forEach(file =>{
-//             console.log('[command]'+file);
-//             let command = require(`../commands/${dir}/${file}`);
-//             client.commands.set(command.name, command);
-//         });
-//     });
-// });
-//
-// fs.readdir('./events',(err,files)=>{
-//     if(err) throw err;
-//     files.forEach(file =>{
-//         console.log('[event]'+file);
-//         let events = require(`../events/${file}`);
-//     })
+// When the client is ready, run this code (only once)
+client.once('ready', () => {
+  console.log('Ready and connected!');
 });
 
-client.login(process.env.KEY);
+client.on('interactionCreate', async interaction => {
+  if (!interaction.isChatInputCommand()) return;
 
-mongoose.connect(process.env.CONNECTION_URL ,(err) => {
-    if (err) return console.log("Error: ", err);
-    console.log(
-      "MongoDB Connection -- Ready state is:",
-      mongoose.connection.readyState
-    );
-  });
+  const command = interaction.client.commands.get(interaction.commandName);
+  if (!command) return;
 
-module.exports.client = client;
-module.exports.mongoose = mongoose;
-module.exports.myCache = myCache;
-module.exports.clientComands = client.commands;
+  try {
+    await command.execute(interaction);
+  }
+  catch (error) {
+    console.error(error);
+    await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+  }
+});
+
+// Login to Discord with your client's token
+client.login(process.env.TOKEN);
+
+module.exports = client;
+module.exports = dotenv;

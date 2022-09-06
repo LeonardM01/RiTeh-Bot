@@ -1,29 +1,27 @@
 {
-  "name": "ritehbot",
+  "name": "RiTeh-Bot",
   "version": "1.0.0",
-  "description": "A discord bot with usefull commands for students of RiTeh",
-  "main": "src/main.js",
+  "description": "A discord bot made with discord.js library for students of Faculty of engineering in Rijeka",
+  "main": "main.js",
+  "repository": "https://github.com/LeonardM01/RiTeh-Bot",
+  "author": "Leonard Martinis & Dominik Kovačević",
+  "license": "MIT",
+  "private": false,
   "scripts": {
-    "start": "nodemon ./src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./src/main.js"
   },
-  "keywords": [
-    "bot",
-    "discord",
-    "riteh"
-  ],
-  "author": "Leonard Martinis",
-  "license": "ISC",
   "dependencies": {
-    "@discordjs/collection": "^0.5.0",
     "@discordjs/rest": "^1.1.0",
-    "axios": "^0.26.1",
-    "discord.js": "^13.6.0",
-    "discord.js-poll": "^1.0.4",
-    "dotenv": "^16.0.0",
-    "jsdom": "^19.0.0",
-    "mongoose": "^6.2.10",
-    "node-cache": "^5.1.2",
-    "nodemon": "^2.0.15"
+    "discord.js": "^14.3.0",
+    "dotenv": "^16.0.2",
+    "mongoose": "^6.5.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "nodemon": "^2.0.19"
   }
 }

@@ -1,15 +1,15 @@
-const { MessageEmbed } = require("discord.js"); // import embeded messagea
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: 'raspored',
-    description: "Raspored za semestar",
-    usage: "?raspored",
-    execute(message, args, cache) {
-        const embed = new MessageEmbed()
-            .setColor('BLUE')
-            .setImage('https://i.imgur.com/ibDBYdP.png')
-            .setTitle("Raspored semestra")
-            .setURL('http://www.riteh.uniri.hr/media/filer_public/c8/5c/c85c8ebb-788c-49df-87d7-649e5d13b5e5/raspored_pss_rac_2021_2022_ljetni_v4.pdf')
-            message.channel.send({embeds : [embed]});
-    }
-}
+  data: new SlashCommandBuilder()
+    .setName('raspored')
+    .setDescription('Komanda za prikazivanje rasporeda predavanja tekuće akademske godine'),
+  async execute(interaction) {
+    await interaction.reply({
+      embeds: [new EmbedBuilder().setColor('BLUE')
+        .setImage('https://i.imgur.com/ibDBYdP.png')
+        .setTitle('Raspored semestra')
+        .setURL('http://www.riteh.uniri.hr/media/filer_public/43/5a/435a8f75-142a-4fdd-9b8c-6612721d9e30/raspored_pss_rac_2022_2023_zimski_v1.pdf')],
+    });
+  },
+};

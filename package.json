@@ -1,0 +1,27 @@
+{
+  "name": "RiTeh-Bot",
+  "version": "1.0.0",
+  "description": "A discord bot made with discord.js library for students of Faculty of engineering in Rijeka",
+  "main": "main.js",
+  "repository": "https://github.com/LeonardM01/RiTeh-Bot",
+  "author": "Leonard Martinis & Dominik Kovačević",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "nodemon ./src/main.js"
+  },
+  "dependencies": {
+    "@discordjs/rest": "^1.1.0",
+    "discord.js": "^14.3.0",
+    "dotenv": "^16.0.2",
+    "mongoose": "^6.5.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "nodemon": "^2.0.19"
+  }
+}
